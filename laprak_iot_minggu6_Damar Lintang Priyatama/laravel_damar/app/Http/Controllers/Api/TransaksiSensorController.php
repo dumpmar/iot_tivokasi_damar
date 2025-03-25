@@ -1,10 +1,14 @@
 <?php
 
+
 namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
+
+
 use App\Models\TransaksiSensor;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TransaksiSensorResource;
+
 
 class TransaksiSensorController extends Controller
 {    
@@ -22,6 +26,12 @@ class TransaksiSensorController extends Controller
         // Return a collection of transactions as a resource
         return TransaksiSensorResource::collection($transaksiSensors);
     }
+
+
+
+
+
+
     /**
  * Store a newly created resource in storage.
  *
@@ -36,10 +46,22 @@ public function store(Request $request)
         'nilai2' => 'required|integer',
     ]);
 
+
     $transaksiSensor = TransaksiSensor::create($validatedData);
+
 
     return new TransaksiSensorResource($transaksiSensor);
 }
+
+
+
+
+
+
+
+
+
+
 /**
  * Display the specified resource.
  *
@@ -50,8 +72,15 @@ public function show($id)
 {
     $transaksiSensor = TransaksiSensor::findOrFail($id);
 
+
     return new TransaksiSensorResource($transaksiSensor);
 }
+
+
+
+
+
+
 /**
  * Update the specified resource in storage.
  *
@@ -67,8 +96,10 @@ public function update(Request $request, $id)
         'nilai2' => 'required|integer',
     ]);
 
+
     $transaksiSensor = TransaksiSensor::findOrFail($id);
     $transaksiSensor->update($validatedData);
+
 
     return new TransaksiSensorResource($transaksiSensor);
 }
@@ -83,7 +114,9 @@ public function destroy($id)
     $transaksiSensor = TransaksiSensor::findOrFail($id);
     $transaksiSensor->delete();
 
+
     return response()->json(['message' => 'Deleted successfully'], 204);
 }
+
 
 }
